@@ -25,7 +25,7 @@ const Game = () => {
 			[0, 3, 6],
 			[1, 4, 7],
 			[2, 5, 8],
-			[1, 4, 8],
+			[0, 4, 8],
 			[2, 4, 6],
 		];
 
@@ -57,7 +57,9 @@ const Game = () => {
 					<button
 						key={index}
 						onClick={() => handleClick(index)}
-						className={`${getBgClass(item)} text-white h-[80px] w-[80px] text-center  active:scale-95 transition-all duration-75 ease-in-out`}
+						className={`${getBgClass(
+							item
+						)} text-white h-[80px] w-[80px] text-center  active:scale-95 transition-all duration-75 ease-in-out`}
 						disabled={winner ? true : false}
 					>
 						{item}
