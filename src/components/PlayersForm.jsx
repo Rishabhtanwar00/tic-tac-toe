@@ -19,7 +19,7 @@ const PlayersForm = () => {
 	};
 
 	return (
-		<div className='flex gap-5'>
+		<div className='flex gap-5 flex-wrap sm:flex-nowrap justify-center items-center'>
 			<div className='flex flex-col gap-2'>
 				<label className='text-sm tracking-wide'>NamePlayer1</label>
 				<input
@@ -28,6 +28,7 @@ const PlayersForm = () => {
 					name='player1'
 					className=' max-w-[350px] px-3 py-1 outline-none border border-black rounded'
 					onChange={handleChange}
+					maxLength={20}
 				/>
 			</div>
 			<div className='flex flex-col gap-2'>
@@ -38,6 +39,7 @@ const PlayersForm = () => {
 					name='player2'
 					className=' max-w-[350px] px-3 py-1 outline-none border border-black rounded'
 					onChange={handleChange}
+					maxLength={20}
 				/>
 			</div>
 		</div>

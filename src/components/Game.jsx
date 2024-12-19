@@ -85,7 +85,7 @@ const Game = () => {
 				</p>
 			)}
 
-			<div className='flex gap-5'>
+			<div className='flex gap-5 flex-wrap items-center justify-center'>
 				<p className='px-5 py-1 bg-green-500 text-white text-base'>
 					{players.player1} wins: <span className='font-bold'> {wins.X}</span>
 				</p>
