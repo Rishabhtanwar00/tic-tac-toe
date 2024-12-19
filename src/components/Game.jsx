@@ -56,18 +56,18 @@ const Game = () => {
 
 	return (
 		<div className='flex flex-col gap-5 justify-center items-center w-full min-h-[100vh]'>
-			<h1 className='text-2xl font-medium'>Tic-Tac-Toe</h1>
+			<h1 className='text-2xl font-medium pt-5 pb-3'>Tic-Tac-Toe</h1>
 			{/* <FunFacts />
 			<Instructions /> */}
 			<PlayersForm />
-			<div className='grid grid-cols-3 gap-2 p-2 border-2 border-black w-fit'>
+			<div className='grid grid-cols-3 gap-2 p-2 border-2 border-black w-fit rounded bg-white'>
 				{squares.map((item, index) => (
 					<button
 						key={index}
 						onClick={() => handleSquareClick(index)}
 						className={`${getBgClass(
 							item
-						)} text-white h-[80px] w-[80px] text-center  active:scale-95 transition-all duration-75 ease-in-out`}
+						)} text-white h-[80px] w-[80px] text-center  active:scale-95 transition-all duration-75 ease-in-out rounded shadow-lg`}
 						disabled={winner ? true : false}
 					>
 						{item}

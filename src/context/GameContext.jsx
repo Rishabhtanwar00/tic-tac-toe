@@ -51,7 +51,7 @@ const GameContextProvider = (props) => {
 	const getBgClass = (value) => {
 		if (value === 'X') return 'bg-green-500';
 		if (value === '0') return 'bg-red-500';
-		return 'bg-black';
+		return 'bg-gray-800';
 	};
 
 	const value = {
