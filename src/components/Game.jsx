@@ -1,51 +1,23 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useContext, useEffect } from 'react';
+// import FunFacts from './components/FunFacts';
+// import Instructions from './components/Instructions';
+import PlayersForm from './PlayersForm';
+import { GameContext } from '../context/GameContext';
 
 const Game = () => {
-	const [squares, setSquares] = useState(Array(9).fill(null));
-	const [isXNext, setIsXNext] = useState(true);
-	const [wins, setWins] = useState({ X: 0, O: 0 });
-	const [winner, setWinner] = useState('');
-
-	const handleClick = (index) => {
-		if (squares[index] || getResult[squares]) return;
-
-		const newSquares = squares.slice();
-		newSquares[index] = isXNext ? 'X' : '0';
-		setSquares(newSquares);
-		setIsXNext(!isXNext);
-	};
-
-	const getResult = (squares) => {
-		const lines = [
-			[0, 1, 2],
-			[3, 4, 5],
-			[6, 7, 8],
-			[0, 3, 6],
-			[1, 4, 7],
-			[2, 5, 8],
-			[0, 4, 8],
-			[2, 4, 6],
-		];
-
-		for (let line of lines) {
-			const [a, b, c] = line;
-			if (
-				squares[a] &&
-				squares[a] === squares[b] &&
-				squares[a] === squares[c]
-			) {
-				return squares[a];
-			}
-		}
-		return null;
-	};
-
-	const getBgClass = (value) => {
-		if (value === 'X') return 'bg-green-500';
-		if (value === '0') return 'bg-red-500';
-		return 'bg-black';
-	};
+	const {
+		squares,
+		setSquares,
+		winner,
+		setWinner,
+		setIsXNext,
+		wins,
+		setWins,
+		getResult,
+		handleSquareClick,
+		getBgClass,
+		players,
+	} = useContext(GameContext);
 
 	useEffect(() => {
 		const newWinner = getResult(squares);
@@ -85,11 +57,14 @@ const Game = () => {
 	return (
 		<div className='flex flex-col gap-5 justify-center items-center w-full min-h-[100vh]'>
 			<h1 className='text-2xl font-medium'>Tic-Tac-Toe</h1>
+			{/* <FunFacts />
+			<Instructions /> */}
+			<PlayersForm />
 			<div className='grid grid-cols-3 gap-2 p-2 border-2 border-black w-fit'>
 				{squares.map((item, index) => (
 					<button
 						key={index}
-						onClick={() => handleClick(index)}
+						onClick={() => handleSquareClick(index)}
 						className={`${getBgClass(
 							item
 						)} text-white h-[80px] w-[80px] text-center  active:scale-95 transition-all duration-75 ease-in-out`}
@@ -101,7 +76,7 @@ const Game = () => {
 			</div>
 			{winner && (
 				<p className='text-xl bg-green-500 text-white px-5 py-1'>
-					Winner is: {winner}
+					Winner is: {winner === 'X' ? players.player1 : players.player2}
 				</p>
 			)}
 			{!winner && !squares.some((el) => el === null) && (
@@ -112,10 +87,10 @@ const Game = () => {
 
 			<div className='flex gap-5'>
 				<p className='px-5 py-1 bg-green-500 text-white text-base'>
-					X wins: <span className='font-bold'> {wins.X}</span>
+					{players.player1} wins: <span className='font-bold'> {wins.X}</span>
 				</p>
 				<p className='px-5 py-1 bg-red-500 text-white text-base'>
-					0 wins: <span className='font-bold'> {wins.O}</span>
+					{players.player2} wins: <span className='font-bold'> {wins.O}</span>
 				</p>
 			</div>
 			<div className='flex gap-5'>
